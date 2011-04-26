@@ -24,11 +24,6 @@
 define('LOG_PATH', '/var/log/mail/');
 
 $contents = file_get_contents('php://stdin');
-if (preg_match('/^To:(.*)/', $contents, $match)) {
-    $recepient = trim($match[1]);
-} else {
-    $recepient = '';
-}
 
-$filename = sprintf('%s_%s_%d.eml', date('Y-m-d-H-i-s'), $recepient, rand(100, 999));
+$filename = sprintf('%s_%d.eml', date('Y-m-d-H-i-s'), rand(1000, 9999));
 file_put_contents(LOG_PATH . $filename, $contents, FILE_APPEND | LOCK_EX);
